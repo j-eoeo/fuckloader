@@ -23,18 +23,18 @@ module.exports = {
     
         async execute(interaction) {
             var object     = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment"))); // parse json
-            var distdir    = interaction.options.getString("directory");                                  // get directory
             var attachURL  = object["url"]                                                                // get file url
             var attachName = object["name"]                                                               // get file name
+            var distdir    = `/www/assault/${interaction.options.getString("directory")}`      // set directory
 
-            console.log(`command received; dist: ${distdir} \nattachment URL: ${attachURL}`);
+            console.log(`command received;\nfile: ${attachName} \ndist: ${distdir} \nattachment URL: ${attachURL}`);
 
-            // get file
+            // get file and place
 
             try {
                 rq.get(attachURL)
-                    .pipe(fs.createWriteStream(`/www/assault/${distdir}/${attachName}`));    // write file 
-                await interaction.reply("fucked");
+                    .pipe(fs.createWriteStream(`${distdir}/${attachName}`));    // write molcar 
+                await interaction.reply(`file fucked}`);
                 
             } catch(err) {
                 await interaction.reply(`download failed \n${err}`);
