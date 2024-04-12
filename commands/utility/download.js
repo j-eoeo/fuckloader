@@ -20,9 +20,12 @@ module.exports = {
         ),
     
         async execute(interaction) {
-            var attachmentURL = JSON.stringify(interaction.options.getAttachment("attachment"));
+            var attachJSON = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment")));
             var distdir = interaction.options.getString("directory");
-            console.log(`dist: ${distdir}, attach: ${attachmentURL}`);
+
+            var attachURL = attachJSON["url"]
+
+            console.log(`dist: ${distdir} \nattach: ${attachJSON} \nattachURL: ${attachURL}`);
             await interaction.reply(`no u`);
         }
         
