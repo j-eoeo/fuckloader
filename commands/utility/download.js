@@ -11,8 +11,8 @@ module.exports = {
                     .setDescription("choose a download location")
                     .setRequired(true)
                     .addChoices(
-                        { name: "shit", value: "shit" },
-                        { name: "fuck", value: "fuck" }
+                        { name: "shit", value: "shit" }, // assault1892.boats/shit
+                        { name: "fuck", value: "fuck" }  // assault1892.boats/fuck
                     )
         )
         .addAttachmentOption(option => 
@@ -22,14 +22,26 @@ module.exports = {
         ),
     
         async execute(interaction) {
-            var object    = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment")));
-            var distdir   = interaction.options.getString("directory");
-            var attachURL = object["url"]
+            var object     = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment"))); // parse json
+            var distdir    = interaction.options.getString("directory");                                  // get directory
+            var attachURL  = object["url"]                                                                // get file url
+            var attachName = object["name"]                                                               // get file name
 
-            // rq.get
+            console.log(`command received; dist: ${distdir} \nattachment URL: ${attachURL}`);
 
-            console.log(`dist: ${distdir} \nattachment URL: ${attachURL}`);
-            await interaction.reply(`no u`);
+            // get file
+            // TODO: distdirを使って指定ファイルパスに保存するようにする (createWriteStreamでいけるか?)
+
+            try {
+                rq.get(attachURL)
+                    .pipe(fs.createWriteStream(attachName));    // write file
+                
+                await interaction.reply("fucked");
+                
+            } catch(err) {
+                await interaction.reply(`download failed \n${err}`);
+            }
+
         }
         
 }
