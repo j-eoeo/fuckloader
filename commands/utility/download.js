@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
+const rq = require("request");
+const fs = require("fs");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -20,12 +22,13 @@ module.exports = {
         ),
     
         async execute(interaction) {
-            var attachJSON = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment")));
-            var distdir = interaction.options.getString("directory");
+            var object    = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment")));
+            var distdir   = interaction.options.getString("directory");
+            var attachURL = object["url"]
 
-            var attachURL = attachJSON["url"]
+            // rq.get
 
-            console.log(`dist: ${distdir} \nattach: ${attachJSON} \nattachURL: ${attachURL}`);
+            console.log(`dist: ${distdir} \nattachment URL: ${attachURL}`);
             await interaction.reply(`no u`);
         }
         
