@@ -129,4 +129,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# download directory
 something/
+fuck/
+shit/

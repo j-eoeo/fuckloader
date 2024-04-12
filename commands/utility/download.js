@@ -30,12 +30,10 @@ module.exports = {
             console.log(`command received; dist: ${distdir} \nattachment URL: ${attachURL}`);
 
             // get file
-            // TODO: distdirを使って指定ファイルパスに保存するようにする (createWriteStreamでいけるか?)
 
             try {
                 rq.get(attachURL)
-                    .pipe(fs.createWriteStream(attachName));    // write file
-                
+                    .pipe(fs.createWriteStream(`${__dirname}/../../${distdir}/${attachName}`));    // write file 
                 await interaction.reply("fucked");
                 
             } catch(err) {
