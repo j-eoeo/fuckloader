@@ -33,7 +33,7 @@ module.exports = {
 
             try {
                 rq.get(attachURL)
-                    .pipe(fs.createWriteStream(`${__dirname}/../../${distdir}/${attachName}`));    // write file 
+                    .pipe(fs.createWriteStream(`/www/assault/${distdir}/${attachName}`));    // write file 
                 await interaction.reply("fucked");
                 
             } catch(err) {
