@@ -4,7 +4,7 @@ const fs = require("fs");
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("download")
+        .setName("fuck")
         .setDescription("download attached file")
         .addStringOption(option => 
             option.setName("directory")
