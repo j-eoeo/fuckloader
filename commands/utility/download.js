@@ -5,10 +5,10 @@ const fs = require("fs");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("fuck")
-        .setDescription("download attached file")
+        .setDescription("fuck server")
         .addStringOption(option => 
             option.setName("directory")
-                    .setDescription("choose a download location")
+                    .setDescription("select fuck")
                     .setRequired(true)
                     .addChoices(
                         { name: "shit", value: "shit" }, // assault1892.boats/shit
@@ -17,7 +17,7 @@ module.exports = {
         )
         .addAttachmentOption(option => 
             option.setName("attachment")
-                    .setDescription("file")
+                    .setDescription("fuck file")
                     .setRequired(true)
         ),
     
@@ -25,7 +25,7 @@ module.exports = {
             var object     = JSON.parse(JSON.stringify(interaction.options.getAttachment("attachment"))); // parse json
             var attachURL  = object["url"]                                                                // get file url
             var attachName = object["name"]                                                               // get file name
-            var distdir    = `/www/assault/${interaction.options.getString("directory")}`      // set directory
+            var distdir    = `/srv/www/assault1892.boats/${interaction.options.getString("directory")}`   // set directory
 
             console.log(`command received;\nfile: ${attachName} \ndist: ${distdir} \nattachment URL: ${attachURL}`);
 
@@ -34,7 +34,7 @@ module.exports = {
             try {
                 rq.get(attachURL)
                     .pipe(fs.createWriteStream(`${distdir}/${attachName}`));    // write molcar 
-                await interaction.reply(`file fucked}`);
+                await interaction.reply(`file scuchejcfusly fucekeked]`);
                 
             } catch(err) {
                 await interaction.reply(`download failed \n${err}`);
