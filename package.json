@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "@yemreak/yt-dlp": "^1.1.5",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "ytdl-core": "^4.11.5"
   },
   "name": "fuckloader",
   "version": "1.0.0",
