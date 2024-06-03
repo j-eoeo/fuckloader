@@ -26,7 +26,7 @@ module.exports = {
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
         var title   = info.player_response.videoDetails.title.replace(titlerg, "_");
         var option  = {
-            quality: "highest",
+            quality: "highestvideo",
             filter: format => format.container === "mp4"
         };
         console.log("starting donwlaod");
