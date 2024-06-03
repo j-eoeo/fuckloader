@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("im not gonna sugarcoat it")
         .addStringOption(option =>
             option.setName("url")
-            .setDescription("im not gonna sugarcoat it")
+            .setDescription("im not gonna sugarcoat it (maybe youtube only)")
             .setRequired(true)
         ),
 
