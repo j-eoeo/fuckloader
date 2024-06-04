@@ -30,7 +30,7 @@ module.exports = {
         console.log("get moie title");
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
         var title   = reduceRepeatedChars(info.player_response.videoDetails.title.replace(titlerg, "_"), "_");
-        var id      = info.player_response.videoDetails.id;
+        var id      = info.player_response.videoDetails.videoId;
         console.log("title: " + title)
 
         console.log("starting donwlaod");
