@@ -30,9 +30,10 @@ module.exports = {
         console.log("get moie title");
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
         var title   = reduceRepeatedChars(info.player_response.videoDetails.title.replace(titlerg, "_"), "_");
+        console.log("title: " + title)
 
         console.log("starting donwlaod");
-        execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "${distdir}/${title}.mp4" ${url}`)
+        // execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "${distdir}/${title}.mp4" ${url}`)
 
         console.log("downloa dcomplete\n")
 
