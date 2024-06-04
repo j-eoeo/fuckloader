@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
-// const fs = require("fs");
-// const ytdl = require("ytdl-core");
+const ytdl = require("ytdl-core");
 const { execSync } = require("child_process");
 
 module.exports = {
@@ -28,7 +27,7 @@ module.exports = {
         var title   = info.player_response.videoDetails.title.replace(titlerg, "_");
 
         console.log("starting donwlaod");
-        execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "%(title)s_%(id)s.%(ext)s" ${url}`)
+        execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "${title}.mp4" ${url}`)
 
         console.log("downloa dcomplete\n")
 
