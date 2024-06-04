@@ -16,7 +16,7 @@ module.exports = {
 
         function reduceRepeatedChars(str, char) {
             const regex = new RegExp(char + '+', 'g');
-            return str.replace(regex);
+            return str.replace(regex, char);
         }
 
         var distdir = `/srv/www/assault1892.boats/sugarcoat`
