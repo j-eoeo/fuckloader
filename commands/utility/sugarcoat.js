@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
-const fs = require("fs");
-const ytdl = require("ytdl-core");
+// const fs = require("fs");
+// const ytdl = require("ytdl-core");
 const { execSync } = require("child_process");
 
 module.exports = {
@@ -27,25 +27,8 @@ module.exports = {
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
         var title   = info.player_response.videoDetails.title.replace(titlerg, "_");
 
-        var video_option  = {
-            quality: "highestvideo",
-            filter: format => format.container === "mp4"
-        };
-
-        var audio_option  = {
-            quality: "highestaudio"
-        };
-
-        console.log("starting video donwlaod");
-        ytdl(url, video_option).pipe(fs.createWriteStream(`${distdir}/${title}_video.mp4`));
-
-        console.log("starting audio downlaod");
-        ytdl(url, audio_option).pipe(fs.createWriteStream(`${distdir}/${title}_audio.wav`));
-
-        console.log("comninbe things");
-        execSync(`ffmpeg -y -i ${distdir}/${title}_video.mp4 -i ${distdir}/${title}_audio.wav -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 ${distdir}/${title}.mp4`, (err, stdout, stderr) => {
-            interaction.editReply("https://assault1892.boats/sugarcoat/Theyre_Not_Gonna_Sugarcoat_It.png");
-        });
+        console.log("starting donwlaod");
+        execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "%(title)s_%(id)s.%(ext)s" ${url}`)
 
         console.log("downloa dcomplete\n")
 
