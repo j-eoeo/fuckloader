@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("discord.js");
 const fs = require("fs");
 const ytdl = require("ytdl-core");
+const { execSync } = require("child_process");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,6 +26,7 @@ module.exports = {
         console.log("get moie title");
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
         var title   = info.player_response.videoDetails.title.replace(titlerg, "_");
+
         var video_option  = {
             quality: "highestvideo",
             filter: format => format.container === "mp4"
@@ -41,9 +43,9 @@ module.exports = {
         ytdl(url, audio_option).pipe(fs.createWriteStream(`${distdir}/${title}_audio.wav`));
 
         console.log("comninbe things");
-        exec(`ffmpeg -y -i ${distdir}/${title}_video.mp4 -i ${distdir}/${title}_audio.wav -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 ${distdir}/${title}.mp4`), (err, stdout, stderr) => {
+        execSync(`ffmpeg -y -i ${distdir}/${title}_video.mp4 -i ${distdir}/${title}_audio.wav -c:v copy -c:a aac -map 0:v:0 -map 1:a:0 ${distdir}/${title}.mp4`, (err, stdout, stderr) => {
             interaction.editReply("https://assault1892.boats/sugarcoat/Theyre_Not_Gonna_Sugarcoat_It.png");
-        };
+        });
 
         console.log("downloa dcomplete\n")
 
