@@ -14,8 +14,8 @@ module.exports = {
 
     async execute(interaction) {
 
-        function reduceRepeatedChars(str) {
-            const regex = new RegExp("_" + '+', 'g');
+        function reduceRepeatedChars(str, char) {
+            const regex = new RegExp(char + '+', 'g');
             return str.replace(regex);
         }
 
@@ -29,7 +29,7 @@ module.exports = {
         var info    = await ytdl.getInfo(url);
         console.log("get moie title");
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
-        var title   = reduceRepeatedChars(info.player_response.videoDetails.title.replace(titlerg, "_"));
+        var title   = reduceRepeatedChars(info.player_response.videoDetails.title.replace(titlerg, "_"), "_");
 
         console.log("starting donwlaod");
         execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "${distdir}/${title}.mp4" ${url}`)
