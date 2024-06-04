@@ -30,14 +30,15 @@ module.exports = {
         console.log("get moie title");
         var titlerg = /[!"#$%&'\(\)\^\\=~\|@\`\[\]\{\};:\+\*,.<>/\?\_\s]/g;
         var title   = reduceRepeatedChars(info.player_response.videoDetails.title.replace(titlerg, "_"), "_");
+        var id      = info.player_response.videoDetails.id;
         console.log("title: " + title)
 
         console.log("starting donwlaod");
-        execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "${distdir}/${title}_[%(id)s].mp4" ${url}`)
+        execSync(`yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" --windows-filenames -o "${distdir}/${title}_[${id}].mp4" ${url}`)
 
         console.log("downloa dcomplete\n")
 
-        interaction.editReply(`damn\nhttps://assault1892.boats/sugarcoat/${title}.mp4`)
+        interaction.editReply(`damn\nhttps://assault1892.boats/sugarcoat/${title}_[${id}].mp4`)
     }
 
 }
